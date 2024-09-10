@@ -4,6 +4,12 @@
   },
   "hosting": {
     "public": "dist/untitled/browser",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",

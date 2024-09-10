@@ -43,4 +43,9 @@ export class LoginComponent implements OnInit {
     this.auth.googleSignIn();
   }
 
+  goToDashBoard() {
+    window.location.href = '/dashboard';
+  }
+
+
 }

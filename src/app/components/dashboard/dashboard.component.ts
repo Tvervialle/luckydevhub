@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -12,9 +13,13 @@ import {FormsModule} from "@angular/forms";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  constructor(private auth : AuthService) { }
 
-    constructor() { }
 
     ngOnInit(): void {
     }
+
+  logOut() {
+    this.auth.logout();
+  }
 }
