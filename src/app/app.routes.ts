@@ -11,6 +11,7 @@ export const routes: Routes = [
   {path: 'register', component : RegisterComponent},
   {path: 'varify-email', component : VarifyEmailComponent},
   {path: 'forgot-password', component : ForgotPasswordComponent},
+  {path: 'couille', component : ForgotPasswordComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: 'login', pathMatch: 'full'},
 ];
