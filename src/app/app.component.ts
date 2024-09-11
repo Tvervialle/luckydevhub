@@ -9,10 +9,9 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent,DashboardComponent,RegisterComponent,VarifyEmailComponent,ForgotPasswordComponent],
+  imports: [RouterOutlet, LoginComponent,DashboardComponent,RegisterComponent,VarifyEmailComponent,ForgotPasswordComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = '“Faut pas respirer la compote, ça fait tousser.”';
 }

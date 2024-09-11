@@ -1,2 +1,22 @@
 <h1>Dashboards</h1>
+
+
 <button (click)="logOut()">logout</button>
+<br>
+<br>
+<app-chat/>
+
+<div class="example-button-row">
+  <button mat-flat-button  (click)="logOut()">logout</button>
+  <button mat-flat-button disabled>Disabled</button>
+  <a mat-flat-button href="https://www.google.com/" target="_blank">google</a>
+</div>
+
+<mat-spinner></mat-spinner>
+
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="alertinfo()">alert</button>
+  <button mat-menu-item (click)="alertinfocouille()">couille</button>
+  <button mat-menu-item (click)="logOut()">Log out</button>
+</mat-menu>

@@ -1,12 +1,12 @@
-import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getDatabase, provideDatabase } from '@angular/fire/database';
-import {provideClientHydration} from "@angular/platform-browser";
+import {ApplicationConfig} from '@angular/core';
+import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
+import {getAuth, provideAuth} from '@angular/fire/auth';
+import {getFirestore, provideFirestore} from '@angular/fire/firestore';
+import {getDatabase, provideDatabase} from '@angular/fire/database';
 import {routes} from "./app.routes";
 import {provideRouter} from "@angular/router";
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 let environment = {
   production: false,
@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
-    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, provideAnimationsAsync(), provideAnimationsAsync()
   ],
 };
 

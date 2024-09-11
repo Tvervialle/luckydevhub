@@ -1,38 +1,25 @@
-<div class="container-fluid">
-  <div class="row mt-5">
-    <div class="col"></div>
-    <div class="col-4">
-      <div class="card shadow">
-        <div class="card-body">
-          <form>
-            <div class="mb-3">
-              <h4 class="text-dark text-muted">Login</h4>
-            </div>
-            <div class="mb-3">
-              <label  class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" [(ngModel)]="email">
-            </div>
-            <div class="mb-3">
-              <label  class="form-label">Password</label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="password">
-            </div>
-            <button type="button" class="btn btn-info" (click)="login()">Login</button>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="/register" style="text-decoration: none;">Need Account ? <span class="text-danger">Register</span></a>
-              </div>
-              <div class="col-md-6">
-                <a href="/forgot-password" class="text-dark" style="text-decoration: none;"> Forgot Password ? </a>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <button (click)="signInWithGoogle()" style="cursor: pointer;">se connecter via google</button>
-            </div>
-          </form>
-        </div>
+    <form class="example-form">
+
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input id="email" matInput type="email" [(ngModel)]="email" name="email" class="form-control" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>password</mat-label>
+        <input id="password" matInput type="password" [(ngModel)]="password" name="password" class="form-control" />
+      </mat-form-field>
+      <button mat-flat-button  (click)="login()">Login</button>
+      <button mat-flat-button  (click)="signInWithGoogle()">Google</button>
+      <button mat-flat-button  (click)="goToDashBoard()">DashBoard</button>
+
+      <mat-divider></mat-divider>
+    <div class="row">
+      <div class="col-md-6">
+        <a href="/register" style="text-decoration: none;">Need Account ? <span class="text-danger">Register</span></a>
+      </div>
+      <div class="col-md-6">
+        <a href="/forgot-password" class="text-dark" style="text-decoration: none;"> Forgot Password ? </a>
       </div>
     </div>
-  </div>
-</div>
-
-<button (click)="goToDashBoard()">Dashboard</button>
+    </form>
