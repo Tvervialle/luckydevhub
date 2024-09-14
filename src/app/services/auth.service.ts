@@ -2,14 +2,18 @@ import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {GoogleAuthProvider} from '@angular/fire/auth'
 import {Router} from '@angular/router';
+import {EMPTY, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private isAuthenticated = false;
+  user$: Observable<any> = EMPTY;  // Initialisation avec un Observable vide
 
   constructor(private fireauth: AngularFireAuth, private router: Router) {
+    this.user$ = this.fireauth.authState;
+
   }
 
   isAlreadyAuthenticated() {
@@ -38,8 +42,8 @@ export class AuthService {
     })
   }
 
-  isAuth(): boolean {
-    return this.isAuthenticated;
+  isAuth(): string | null {
+    return localStorage.getItem('token');
   }
 
   // register method
@@ -52,6 +56,12 @@ export class AuthService {
       alert(err.message);
       this.router.navigate(['/register']);
     })
+  }
+
+  getUserInfo(): Observable<any> {
+    // Retourne un observable contenant l'état de l'authentification
+    console.log('getUserInfo()', this.user$);
+    return this.user$;
   }
 
   // sign out

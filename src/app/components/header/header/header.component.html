@@ -1,0 +1,21 @@
+@if (auth.isAuth()){
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" (click)="openDialog()" aria-label="Example icon-button with account_circle icon" >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <span (click)="goDashboard()" class="link">Lucky Dev Hub</span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with how_to_vote icon" (click)="goPoker()">
+    <mat-icon>how_to_vote</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with list icon" (click)="goListSalons()">
+    <mat-icon>list</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="alertinfocouille()">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with logout icon" (click)="logOut()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+}

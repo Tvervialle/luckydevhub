@@ -7,7 +7,7 @@ export const AuthGuard = () => {
   const router = inject(Router);
 
 
-  if(!auth.isAuth()) {
+  if(!auth.isAuth() && !localStorage.getItem('token')) {
     router.navigateByUrl('/login')
     return false
   }

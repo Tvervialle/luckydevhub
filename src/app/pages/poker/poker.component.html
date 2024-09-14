@@ -1,0 +1,13 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="salonName"
+      name="salonName"
+    placeholder="Nom du salon"
+    class="form-control"
+    >
+  </mat-form-field>
+  <button mat-flat-button (click)="createSalon()">Créer un salon temporaire</button>
+</form>

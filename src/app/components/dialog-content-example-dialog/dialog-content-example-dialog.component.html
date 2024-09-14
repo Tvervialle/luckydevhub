@@ -1,0 +1,17 @@
+@if (user?.displayName) {
+  <h2 mat-dialog-title>{{ user.displayName }}</h2>
+}
+<mat-dialog-content class="mat-typography">
+  @if (user?.photoURL) {
+    <img [src]="user.photoURL" alt="Profile Photo">
+  }
+  <p>Vous êtes connecté avec cette adresse : {{ user?.email }}</p>
+  <p>Vous pouvez vous déconnecter en cliquant sur le bouton ci-dessous</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-icon-button mat-dialog-close class="example-icon" aria-label="Example icon-button with logout icon"
+          (click)="logOut()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-dialog-actions>

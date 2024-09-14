@@ -1,0 +1,14 @@
+<div class="chat-container">
+  <div class="messages">
+    <div *ngFor="let message of messages$ | async" class="message">
+      <div class="message-user">{{ getDateHeure(message.timestamp) }} {{ getUsernameFromEmail(message.user) }} : <b> {{ message.content }} </b></div>
+
+
+    </div>
+
+  </div>
+  <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
+    <input formControlName="message" placeholder="Tapez votre message..."/>
+    <button type="submit">Envoyer</button>
+  </form>
+</div>

@@ -1,0 +1,8 @@
+<div class="salon-list">
+  <h2>Salons en cours</h2>
+  <ul>
+    <li *ngFor="let salon of salons">
+      <a [routerLink]="['/salon', salon.name]">{{ salon.name }}</a>
+    </li>
+  </ul>
+</div>

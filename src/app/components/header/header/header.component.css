@@ -1,0 +1,15 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+/* Style normal */
+.link {
+  color: #007bff;
+  cursor: pointer;
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+/* Effet de brillance au hover */
+.link:hover {
+  color: #ffffff; /* Tu peux garder la couleur bleue ou l'ajuster */
+  text-shadow: 0 0 8px rgba(0, 123, 255, 0.8), 0 0 16px rgba(0, 123, 255, 0.6), 0 0 24px rgba(0, 123, 255, 0.4);
+}

@@ -1,22 +1,12 @@
-<h1>Dashboards</h1>
-
-
-<button (click)="logOut()">logout</button>
-<br>
-<br>
-<app-chat/>
-
-<div class="example-button-row">
-  <button mat-flat-button  (click)="logOut()">logout</button>
-  <button mat-flat-button disabled>Disabled</button>
-  <a mat-flat-button href="https://www.google.com/" target="_blank">google</a>
+<div class="welcome-container">
+  <h1>Bienvenue sur mon site !</h1>
+  <p class="welcome-message"><strong>English :</strong> Welcome to my website!</p>
+  <p class="welcome-message"><strong>Español :</strong> ¡Bienvenido a mi sitio web!</p>
+  <p class="welcome-message"><strong>Deutsch :</strong> Willkommen auf meiner Webseite!</p>
+  <p class="welcome-message"><strong>Italiano :</strong> Benvenuto sul mio sito web!</p>
+  <p class="welcome-message"><strong>中文 (Chinois) :</strong> 欢迎访问我的网站！</p>
+  <p class="welcome-message"><strong>العربية :</strong> مرحبًا بك في موقعي الإلكتروني!</p>
+  <p class="welcome-message"><strong>日本語 (Japonais) :</strong> 私のウェブサイトへようこそ！</p>
+  <p class="welcome-message"><strong>Português :</strong> Bem-vindo ao meu site!</p>
+  <p class="welcome-message"><strong>Русский (Russe) :</strong> Добро пожаловать на мой сайт!</p>
 </div>
-
-<mat-spinner></mat-spinner>
-
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="alertinfo()">alert</button>
-  <button mat-menu-item (click)="alertinfocouille()">couille</button>
-  <button mat-menu-item (click)="logOut()">Log out</button>
-</mat-menu>

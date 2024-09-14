@@ -5,11 +5,12 @@ import {ForgotPasswordComponent} from "./components/forgot-password/forgot-passw
 import {VarifyEmailComponent} from "./components/varify-email/varify-email.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {HeaderComponent} from "./components/header/header/header.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent,DashboardComponent,RegisterComponent,VarifyEmailComponent,ForgotPasswordComponent,],
+  imports: [RouterOutlet, LoginComponent, DashboardComponent, RegisterComponent, VarifyEmailComponent, ForgotPasswordComponent, HeaderComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

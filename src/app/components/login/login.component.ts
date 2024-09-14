@@ -22,20 +22,24 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './login.component.html',
   standalone: true,
   imports: [
-    FormsModule, MatCardModule,MatFormFieldModule , MatListModule, MatDividerModule, MatAnchor, MatButton, MatFormField, MatInput, MatLabel, ReactiveFormsModule
+    FormsModule,
+    MatCardModule, MatFormFieldModule,
+    MatListModule, MatDividerModule, MatAnchor,
+    MatButton, MatFormField, MatInput, MatLabel, ReactiveFormsModule
   ],
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
 
-  email : string = '';
-  password : string = '';
+  email: string = '';
+  password: string = '';
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
   matcher = new MyErrorStateMatcher();
 
 
-  constructor(private auth : AuthService) { }
+  constructor(private auth: AuthService) {
+  }
 
   ngOnInit(): void {
     this.auth.isAlreadyAuthenticated();
@@ -43,17 +47,17 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    if(this.email == '') {
+    if (this.email == '') {
       alert('Please enter email');
       return;
     }
 
-    if(this.password == '') {
+    if (this.password == '') {
       alert('Please enter password');
       return;
     }
 
-    this.auth.login(this.email,this.password);
+    this.auth.login(this.email, this.password);
 
     this.email = '';
     this.password = '';

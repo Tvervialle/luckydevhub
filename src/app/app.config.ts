@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
-    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, provideAnimationsAsync(), provideAnimationsAsync()
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()
   ],
 };
 
