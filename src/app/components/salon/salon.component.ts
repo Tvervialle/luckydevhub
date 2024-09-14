@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SalonService} from "../../services/salon.service";
 import {ChatComponent} from "../chat/chat.component";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-salon',
@@ -15,14 +16,26 @@ import {ChatComponent} from "../chat/chat.component";
 export class SalonComponent implements OnInit {
 
   salonId: string | null = null;
-  accessValid: boolean = false;
+  accessValid = false;
   isShareVisible = false;
 
-  constructor(private route: ActivatedRoute, private salonService: SalonService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private salonService: SalonService, private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.salonService.deleteExpiredSalons();
+
     this.salonId = this.route.snapshot.paramMap.get('id');
+    this.salonService.getSalons().subscribe(salon => {
+      console.log(salon);
+      this.accessValid = salon.some(s => s.name === this.salonId);
+      if (!this.accessValid) {
+        this.router.navigate(['/']);
+      }
+    });
   }
+
+
 
   toggleShare(): void {
     this.isShareVisible = !this.isShareVisible;

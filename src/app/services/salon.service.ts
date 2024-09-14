@@ -14,6 +14,20 @@ export class SalonService {
   getSalons(): Observable<any[]> {
     return this.firestore.collection('salons').valueChanges();
   }
+
+  deleteExpiredSalons(): void {
+    const now = new Date();
+    const thirtyMinutesAgo = new Date(now.getTime() - 120 * 60 * 1000); // Date d'il y a 2 heures
+
+    this.firestore.collection('salons', ref => ref.where('createdAt', '<=', thirtyMinutesAgo)).get().subscribe(snapshot => {
+      snapshot.forEach(doc => {
+        this.firestore.collection('salons').doc(doc.id).delete()
+          .then(() => console.log(`Salon ${doc.id} supprimé car expiré`))
+          .catch(error => console.error('Erreur lors de la suppression du salon :', error));
+      });
+    });
+  }
+
   createSalon(salonData: any): Promise<any> {
     return this.firestore.collection('salons').add(salonData)
       .then(docRef => {

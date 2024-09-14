@@ -19,6 +19,7 @@ export class ListSalonsComponent implements OnInit {
   constructor(private salonService: SalonService) {}
 
   ngOnInit(): void {
+    this.salonService.deleteExpiredSalons();
     this.salonService.getSalons().subscribe(data => {
       this.salons = data;
     });
