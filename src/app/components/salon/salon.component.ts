@@ -16,11 +16,16 @@ export class SalonComponent implements OnInit {
 
   salonId: string | null = null;
   accessValid: boolean = false;
+  isShareVisible = false;
 
   constructor(private route: ActivatedRoute, private salonService: SalonService, private router: Router) { }
 
   ngOnInit(): void {
     this.salonId = this.route.snapshot.paramMap.get('id');
+  }
+
+  toggleShare(): void {
+    this.isShareVisible = !this.isShareVisible;
   }
 
   copyUrl() {

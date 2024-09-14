@@ -1,14 +1,66 @@
+/* Conteneur du chat */
 .chat-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  position: fixed;
+  bottom: 60px;
+  right: 0;
+  width: 300px; /* Ajuste la largeur selon tes besoins */
+  height: 400px; /* Ajuste la hauteur selon tes besoins */
+  background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow-y: scroll; /* Permet le défilement vertical */
   display: flex;
   flex-direction: column;
-  height: 500px;
-  overflow: hidden;
+  z-index: 1000; /* S'assurer que le chat est au-dessus des autres éléments */
+}
+
+h6 {
+  background-color: #007bff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+/* Bouton pour masquer/afficher le chat */
+.toggle-chat-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000; /* Assure que le bouton est au-dessus du chat */
+}
+
+/* Style pour le bouton actif/affiché */
+.chat-container.hidden {
+  display: none;
+}
+
+/* Masquer la barre de défilement */
+.chat-container::-webkit-scrollbar {
+  display: none; /* Pour Chrome, Safari et les navigateurs basés sur WebKit */
+}
+
+.chat-container {
+  -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
+  scrollbar-width: none; /* Pour Firefox */
+}
+
+/* Masquer la barre de défilement */
+.messages::-webkit-scrollbar {
+  display: none; /* Pour Chrome, Safari et les navigateurs basés sur WebKit */
+}
+
+.messages {
+  -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
+  scrollbar-width: none; /* Pour Firefox */
 }
 
 .messages {

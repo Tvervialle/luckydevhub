@@ -1,9 +1,22 @@
-<div class="share-container">
-  <h1>Partage cette URL pour inviter d'autres utilisateurs :</h1>
+<div class="construction-background">
+  <div class="construction-panel">
+    <h1 class="construction-text">En Construction</h1>
+    <p class="construction-text">Poker component</p>
+  </div>
+</div>
+
+<!-- Conteneur de partage -->
+<div [class.hidden]="!isShareVisible" class="share-container">
+  <h6>Partage cette URL pour inviter d'autres utilisateurs :</h6>
   <div class="url-box">
     <input id="shareUrl" type="text" readonly value="https://luckystarkdevhub.web.app/salon/{{salonId}}" />
     <button class="copy-btn" (click)="copyUrl()">Copier</button>
   </div>
 </div>
+
+<!-- Bouton pour masquer/afficher le conteneur de partage -->
+<button class="toggle-share-button" (click)="toggleShare()">
+  {{ isShareVisible ? '–' : '+' }}
+</button>
 
 <app-chat></app-chat>

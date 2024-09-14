@@ -51,3 +51,111 @@ h1 {
 .copy-btn:active {
   background-color: #003f7f;
 }
+/* Conteneur de partage */
+.share-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 300px; /* Ajuste la largeur selon tes besoins */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  border-radius: 8px; /* Coins arrondis */
+  display: flex;
+  flex-direction: column;
+  z-index: 1000; /* Assure que le conteneur est au-dessus des autres éléments */
+  transition: transform 0.3s ease; /* Transition pour cacher/montrer */
+}
+
+/* Bouton pour masquer/afficher le conteneur de partage */
+.toggle-share-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000; /* Assure que le bouton est au-dessus du conteneur */
+}
+
+/* Style pour le conteneur caché */
+.share-container.hidden {
+  transform: translateX(-100%); /* Déplace le conteneur hors de l'écran */
+}
+
+/* Style pour le champ URL et le bouton */
+.url-box {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#shareUrl {
+  flex: 1;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.copy-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background-color: #218838;
+}
+
+.poker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  height: 80%;
+  background: lightslategray;
+
+}
+
+/* Arrière-plan de chantier */
+.construction-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Panneau de construction */
+.construction-panel {
+  background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+  border: 2px dashed #ffcc00; /* Bordure en pointillés jaune */
+  padding: 20px;
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombre légère */
+  max-width: 600px;
+  margin: 20px auto;
+  top: 20px; /* Ajuste la position selon tes besoins */
+  left: 20px; /* Ajuste la position selon tes besoins */
+}
+
+/* Texte de chantier */
+.construction-text {
+  color: #333;
+  font-family: 'Arial', sans-serif; /* Utilise une police simple */
+  font-size: 1.2em;
+  text-align: center;
+}

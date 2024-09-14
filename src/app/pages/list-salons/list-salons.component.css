@@ -1,0 +1,33 @@
+/* Conteneur de la liste des salons */
+.salon-list {
+  width: 100%;
+  max-width: 600px; /* Ajuste la largeur selon tes besoins */
+  padding: 20px;
+  margin: 50px auto;
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+
+/* Élément de la liste */
+.salon-item {
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+/* Lien des salons */
+.salon-link {
+  display: block;
+  padding: 10px;
+  background-color: #007bff; /* Couleur de fond des éléments */
+  color: #fff; /* Couleur du texte */
+  text-decoration: none; /* Supprimer le soulignement */
+  border-radius: 4px; /* Coins arrondis */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
+}
+
+/* Effet au survol */
+.salon-link:hover {
+  background-color: #0056b3; /* Couleur de fond au survol */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Ombre au survol */
+}

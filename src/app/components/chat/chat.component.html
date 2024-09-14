@@ -1,14 +1,23 @@
-<div class="chat-container">
-  <div class="messages">
+<div [class.hidden]="!isChatVisible" class="chat-container">
+  <div class="chat-header">
+    <h6>{{salonId}}</h6>
+  </div>
+  <div class="messages" #chatContainer>
     <div *ngFor="let message of messages$ | async" class="message">
-      <div class="message-user">{{ getDateHeure(message.timestamp) }} {{ getUsernameFromEmail(message.user) }} : <b> {{ message.content }} </b></div>
-
-
+      <div class="message-user" matTooltip="{{ getDateHeure(message.timestamp) }}"
+      > {{ getUsernameFromEmail(message.user) }} :
+        <b> {{ message.content }} </b></div>
     </div>
-
   </div>
   <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
     <input formControlName="message" placeholder="Tapez votre message..."/>
     <button type="submit">Envoyer</button>
   </form>
 </div>
+
+<button class="toggle-chat-button" (click)="toggleChat()">
+  {{ isChatVisible ? '-' : '+' }}
+</button>
+
+
+
