@@ -61,7 +61,6 @@ export class AuthService {
 
   getUserInfo(): Observable<any> {
     // Retourne un observable contenant l'état de l'authentification
-    console.log('getUserInfo()', this.user$);
     return this.user$;
   }
 
@@ -105,9 +104,5 @@ export class AuthService {
     }, err => {
       alert(err.message);
     })
-  }
-
-  async getCurrentUser() {
-    return this.fireauth.currentUser;
   }
 }

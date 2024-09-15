@@ -30,15 +30,10 @@ export class SalonComponent implements OnInit {
 
   ngOnInit(): void {
     this.salonId = this.route.snapshot.paramMap.get('id');
-    console.log('Salon ID:', this.salonId);
-
-    this.salonService.joinSalon(this.salonId ? this.salonId : '').then(r => console.log('Utilisateur ajouté au salon')).catch(e => console.error('Erreur lors de l\'ajout de l\'utilisateur au salon :', e));
-
     this.salonService.deleteExpiredSalons();
+    this.salonService.joinSalon(this.salonId ? this.salonId : '').then(r => console.log('Utilisateur ajouté au salon')).catch(e => console.error('Erreur lors de l\'ajout de l\'utilisateur au salon :', e));
     this.getConnectedUsers(this.salonId ? this.salonId : ''); // Passe l'ID du salon
-
     this.salonService.getSalons().subscribe(salon => {
-      console.log(salon);
       this.accessValid = salon.some(s => s.name === this.salonId);
       if (!this.accessValid) {
         this.router.navigate(['/']);

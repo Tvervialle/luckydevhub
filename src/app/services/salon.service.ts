@@ -27,9 +27,6 @@ export class SalonService {
           return;
         }
         const userEmail = user.email;
-        if (typeof userEmail === "string") {
-          console.log('Nom d\'utilisateur:', userEmail.valueOf());
-        }
 
         this.firestore.collection('salons').doc(salonId).collection('connectedUsers').doc(await user.uid).set({
           userName: userEmail,
