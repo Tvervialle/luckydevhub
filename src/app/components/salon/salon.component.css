@@ -137,6 +137,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 300px;
 }
 
 /* Panneau de construction */
