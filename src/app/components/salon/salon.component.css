@@ -159,3 +159,23 @@ h1 {
   font-size: 1.2em;
   text-align: center;
 }
+
+/* CSS pour le conteneur des utilisateurs connectés */
+.connected-users-container {
+  position: fixed; /* Positionne le conteneur de manière fixe par rapport à la fenêtre */
+  top: 60px;       /* Espacement depuis le haut de la fenêtre */
+  left: 10px;     /* Espacement depuis le bord droit de la fenêtre */
+  padding: 10px;   /* Espacement interne pour le conteneur */
+  z-index: 1000;   /* Assure que le conteneur est au-dessus des autres éléments */
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+

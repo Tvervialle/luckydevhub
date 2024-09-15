@@ -5,6 +5,21 @@
   </div>
 </div>
 
+
+<div class="connected-users-container">
+  <div *ngIf="connectedUsers$ | async as users">
+    <p>Personnes connectées : {{ users.length }}</p>
+    <ul>
+      <li *ngFor="let user of users">
+        <span class="status-indicator"></span> {{ user.userName }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+
 <!-- Conteneur de partage -->
 <div [class.hidden]="!isShareVisible" class="share-container">
   <h6>Partage cette URL pour inviter d'autres utilisateurs :</h6>

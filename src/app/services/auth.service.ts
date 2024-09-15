@@ -3,6 +3,7 @@ import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {GoogleAuthProvider} from '@angular/fire/auth'
 import {Router} from '@angular/router';
 import {EMPTY, Observable} from "rxjs";
+import { User } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -106,4 +107,7 @@ export class AuthService {
     })
   }
 
+  async getCurrentUser() {
+    return this.fireauth.currentUser;
+  }
 }
