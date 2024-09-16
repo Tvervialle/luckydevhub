@@ -5,6 +5,8 @@ import {ChatComponent} from "../chat/chat.component";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Observable} from "rxjs";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-salon',
@@ -24,13 +26,14 @@ export class SalonComponent implements OnInit, OnDestroy {
   accessValid = false;
   isShareVisible = false;
   connectedUsers$: Observable<any[]> = new Observable<any[]>();
+  private userId: any;
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private salonService: SalonService, private router: Router) {
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private salonService: SalonService, private router: Router,private afAuth: AngularFireAuth, private auth: AuthService) {
   }
 
   ngOnInit(): void {
-    window.addEventListener('beforeunload', () => this.salonService.leaveSalon(this.salonId ? this.salonId : '')); // Passe l'ID du salon
     this.salonId = this.route.snapshot.paramMap.get('id');
+    window.addEventListener('beforeunload', () => this.salonService.leaveSalon(this.salonId ? this.salonId : '')); // Passe l'ID du salon
     this.salonService.deleteExpiredSalons();
     this.salonService.joinSalon(this.salonId ? this.salonId : '').then(r => console.log('Utilisateur ajouté au salon')).catch(e => console.error('Erreur lors de l\'ajout de l\'utilisateur au salon :', e));
     this.getConnectedUsers(this.salonId ? this.salonId : ''); // Passe l'ID du salon
@@ -40,6 +43,30 @@ export class SalonComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       }
     });
+    this.auth.getUserInfo().subscribe(user => {
+      if (user) {
+        this.userId = user.uid;
+      }
+    }
+    );
+    // Supprime l'utilisateur lorsqu'il se déconnecte
+    this.afAuth.onAuthStateChanged(user => {
+      if (!user && this.userId && this.salonId) {
+        this.removeUserFromSalon(this.userId, this.salonId);
+      }
+    });
+
+  }
+
+
+  private removeUserFromSalon(userId: string, salonId: string): void {
+    this.firestore.collection('salons').doc(salonId).collection('connectedUsers').doc(userId).delete()
+      .then(() => {
+        console.log('Utilisateur supprimé du salon.');
+      })
+      .catch(error => {
+        console.error('Erreur lors de la suppression de l\'utilisateur du salon :', error);
+      });
   }
 
   ngOnDestroy(): void {

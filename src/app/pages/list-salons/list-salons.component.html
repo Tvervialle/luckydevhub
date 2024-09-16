@@ -6,7 +6,7 @@
 
   <ng-template #salonList>
     <ul *ngIf="salons$ | async as salons; else loading">
-      <div *ngFor="let salon of salons" >
+      <div *ngFor="let salon of salons" class="salon-item">
         <a [routerLink]="['/salon', salon.salonId]" class="salon-link">
           @if (salon.connectedUsersCount === 1) {
             <span class="connected-users"> {{ salon.name }} - {{ salon.connectedUsersCount }} personne connectée</span>

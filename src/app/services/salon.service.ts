@@ -54,7 +54,7 @@ export class SalonService {
 
   deleteExpiredSalons(): void {
     const now = new Date();
-    const thirtyMinutesAgo = new Date(now.getTime() - 120 * 60 * 1000); // Date d'il y a 2 heures
+    const thirtyMinutesAgo = new Date(now.getTime() - 480 * 60 * 1000); // Date d'il y a 4 heures
 
     this.firestore.collection('salons', ref => ref.where('createdAt', '<=', thirtyMinutesAgo)).get().subscribe(snapshot => {
       snapshot.forEach(doc => {
