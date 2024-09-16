@@ -1,8 +1,25 @@
 <div class="salon-list">
-  <h2>Salons en cours :</h2>
-  <ul>
-    <li *ngFor="let salon of salons" class="salon-item">
-      <a [routerLink]="['/salon', salon.name]" class="salon-link">{{ salon.name }}</a>
-    </li>
-  </ul>
+  <h2>Salons en cours</h2>
+  <div *ngIf="errorMessage; else salonList">
+    <p class="error-message">{{ errorMessage }}</p>
+  </div>
+
+  <ng-template #salonList>
+    <ul *ngIf="salons$ | async as salons; else loading">
+      <div *ngFor="let salon of salons" >
+        <a [routerLink]="['/salon', salon.salonId]" class="salon-link">
+          @if (salon.connectedUsersCount === 1) {
+            <span class="connected-users"> {{ salon.name }} - {{ salon.connectedUsersCount }} personne connectée</span>
+          } @else if  (salon.connectedUsersCount > 1) {
+            <span class="connected-users"> {{ salon.name }} - {{ salon.connectedUsersCount }} personnes connectées</span>
+          } @else {
+            <span class="connected-users"> {{ salon.name }} - Aucune personne connectée</span>
+          }
+        </a>
+      </div>
+    </ul>
+    <ng-template #loading>
+      <p>Chargement des salons...</p>
+    </ng-template>
+  </ng-template>
 </div>
