@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SalonService} from "../../services/salon.service";
 import {ChatComponent} from "../chat/chat.component";
@@ -18,7 +18,7 @@ import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
   templateUrl: './salon.component.html',
   styleUrl: './salon.component.css'
 })
-export class SalonComponent implements OnInit {
+export class SalonComponent implements OnInit, OnDestroy {
 
   salonId: string | null = null;
   accessValid = false;
