@@ -29,6 +29,7 @@ export class SalonComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.addEventListener('beforeunload', () => this.salonService.leaveSalon(this.salonId ? this.salonId : '')); // Passe l'ID du salon
     this.salonId = this.route.snapshot.paramMap.get('id');
     this.salonService.deleteExpiredSalons();
     this.salonService.joinSalon(this.salonId ? this.salonId : '').then(r => console.log('Utilisateur ajouté au salon')).catch(e => console.error('Erreur lors de l\'ajout de l\'utilisateur au salon :', e));
