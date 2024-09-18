@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SalonService} from "../../services/salon.service";
 import {ChatComponent} from "../chat/chat.component";
@@ -33,7 +33,6 @@ export class SalonComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.salonId = this.route.snapshot.paramMap.get('id');
-    window.addEventListener('beforeunload', () => this.salonService.leaveSalon(this.salonId ? this.salonId : '')); // Passe l'ID du salon
     this.salonService.deleteExpiredSalons();
     this.salonService.joinSalon(this.salonId ? this.salonId : '').then(r => console.log('Utilisateur ajouté au salon')).catch(e => console.error('Erreur lors de l\'ajout de l\'utilisateur au salon :', e));
     this.getConnectedUsers(this.salonId ? this.salonId : ''); // Passe l'ID du salon
@@ -55,7 +54,35 @@ export class SalonComponent implements OnInit, OnDestroy {
         this.removeUserFromSalon(this.userId, this.salonId);
       }
     });
+    // Stocker une clé dans le sessionStorage au chargement de la page
+    sessionStorage.setItem('isRefreshed', 'true');
 
+    // Ajouter l'événement beforeunload
+    window.addEventListener('beforeunload', this.leaveSalonOnUnload.bind(this));
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  leaveSalonOnUnload(event: any): void {
+    // Si la clé existe dans le sessionStorage, c'est un refresh
+    if (sessionStorage.getItem('isRefreshed')) {
+      console.log('Page rechargée');
+      // Action spécifique en cas de refresh
+    } else {
+      console.log('Fermeture de l\'onglet ou de la fenêtre');
+      // Action spécifique en cas de fermeture de l'onglet ou de la fenêtre
+      this.salonService.leaveSalon(this.salonId ? this.salonId : '');
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Supprimer l'événement beforeunload pour éviter les fuites de mémoire
+    window.removeEventListener('beforeunload', this.leaveSalonOnUnload.bind(this));
+
+    // Supprimer la clé du sessionStorage lors de la destruction du composant
+    sessionStorage.removeItem('isRefreshed');
+
+    // Action spécifique lors de la destruction du composant (quitter le salon)
+    this.salonService.leaveSalon(this.salonId ? this.salonId : '');
   }
 
 
@@ -69,9 +96,6 @@ export class SalonComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.salonService.leaveSalon(this.salonId ? this.salonId : '');
-  }
 
   getConnectedUsers(salonId: string): void {
     this.connectedUsers$ = this.firestore.collection('salons').doc(salonId)

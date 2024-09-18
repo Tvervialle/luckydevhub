@@ -10,4 +10,5 @@
     >
   </mat-form-field>
   <button mat-flat-button (click)="createSalon()">Créer un salon temporaire</button>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 </form>

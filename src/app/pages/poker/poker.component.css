@@ -10,3 +10,8 @@ form{
   margin-top: 15%;
 }
 
+.error-message {
+  color: red; /* Définit la couleur du texte en rouge */
+  font-size: 1.2em; /* Optionnel : augmente légèrement la taille du texte */
+  margin: 10px 0; /* Optionnel : ajoute une marge autour du message */
+}
