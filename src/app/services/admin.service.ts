@@ -2,6 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Observable, Subscription} from "rxjs";
 import {AuthService} from "./auth.service";
+import {collection, doc, getDocs} from "@angular/fire/firestore";
 
 
 interface Admin {
@@ -16,17 +17,22 @@ export class AdminService {
   adminList$: Observable<Admin[]> | null = null; // Initialisé à null
   email = '';
 
-  constructor(private firestore: AngularFirestore,private auth: AuthService) {
+  constructor(private firestore: AngularFirestore) {
   }
 
 
-  isAdminExist(email: string): Promise<boolean> {
+  isAdminExist(): Promise<boolean> {
     return new Promise((resolve, reject) => {
+      const email = localStorage.getItem('email') ?? '';
+
       this.firestore.collection('admins').valueChanges().subscribe({
         next: (admins) => {
           let isAdmin = false;
           admins.forEach((admin: any) => {
-            if (admin.email === email) {
+            console.log('admin', admin.email);
+            console.log('email',email );
+            console.log('result', admin.email ==email)
+            if (admin.email == email) {
               isAdmin = true;
             }
           });
@@ -40,10 +46,6 @@ export class AdminService {
     });
   }
 
-  async isAdmin() {
-    console.log('isAdmin called');
-    return await this.isAdminExist(localStorage.getItem('email')??'');
-  }
 
 
   getAdmins() {

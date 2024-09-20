@@ -32,7 +32,7 @@ export class PokerComponent implements OnInit {
   async ngOnInit() {
     this.firestore.collection('admins').valueChanges().subscribe({
       next: async () => {
-        this.isAdminAthorized = await this.admin.isAdmin()
+        this.isAdminAthorized = await this.admin.isAdminExist()
       },
       error: (error) => {
         console.error('Error fetching admins', error);

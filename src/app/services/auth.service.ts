@@ -102,7 +102,7 @@ export class AuthService {
       this.isAuthenticated = true;
       this.router.navigate(['/dashboard']);
       localStorage.setItem('token', JSON.stringify(res.user?.uid));
-      localStorage.setItem('email', JSON.stringify(res.user?.email));
+      localStorage.setItem('email', res.user?.email ?? '');
 
     }, err => {
       alert(err.message);
