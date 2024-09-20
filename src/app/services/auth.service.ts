@@ -71,6 +71,7 @@ export class AuthService {
       this.isAuthenticated = false;
 
       localStorage.removeItem('token');
+      localStorage.removeItem('email');
       this.router.navigate(['/login']);
     }, err => {
       alert(err.message);
