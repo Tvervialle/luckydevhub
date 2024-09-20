@@ -1,20 +1,20 @@
 <body class="background-poker">
 
+  @if (isAdminAthorized) {
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="salonName"
+          name="salonName"
+          placeholder="Nom du salon"
+          class="form-control"
+        >
+      </mat-form-field>
 
-<form class="example-form">
-  @if (isAdminAthorized){
-  <mat-form-field class="example-full-width">
-    <input
-      matInput
-      type="text"
-      [(ngModel)]="salonName"
-      name="salonName"
-    placeholder="Nom du salon"
-    class="form-control"
-    >
-  </mat-form-field>
+      <button mat-flat-button (click)="createSalon()">Créer un salon temporaire</button>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </form>
   }
-  <button mat-flat-button (click)="createSalon()">Créer un salon temporaire</button>
-  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-</form>
 </body>
