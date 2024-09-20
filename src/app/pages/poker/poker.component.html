@@ -1,4 +1,8 @@
+<body class="background-poker">
+
+
 <form class="example-form">
+  @if (isAdminAthorized){
   <mat-form-field class="example-full-width">
     <input
       matInput
@@ -9,6 +13,8 @@
     class="form-control"
     >
   </mat-form-field>
+  }
   <button mat-flat-button (click)="createSalon()">Créer un salon temporaire</button>
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 </form>
+</body>

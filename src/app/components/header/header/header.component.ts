@@ -9,6 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   DialogContentExampleDialogComponent
 } from "../../dialog-content-example-dialog/dialog-content-example-dialog.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ import {
     MatIconButton,
     MatMenu,
     MatToolbar,
-    MatToolbarModule, MatButtonModule, MatIconModule, MatMenu, MatMenuTrigger
+    MatToolbarModule, MatButtonModule, MatIconModule, MatMenu, MatMenuTrigger, NgOptimizedImage
   ],
 
   templateUrl: './header.component.html',
@@ -61,5 +62,9 @@ export class HeaderComponent {
 
   goListSalons() {
     this.router.navigate(['/list-salons']);
+  }
+
+  goAdmin() {
+    this.router.navigate(['/admin']);
   }
 }

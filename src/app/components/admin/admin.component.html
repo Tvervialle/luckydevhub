@@ -1,0 +1,77 @@
+<div class="admin-list-container">
+  <h2>Liste des Administrateurs</h2>
+
+  <!-- Formulaire pour ajouter un administrateur -->
+  <form (ngSubmit)="addAdmin()">
+    <div class="form-group">
+      <label for="adminName">Nom de l'administrateur:</label>  <mat-form-field class="example-full-width">
+
+    <input matInput
+        type="text"
+        id="adminName"
+        [(ngModel)]="newAdmin.name"
+        name="name"
+        required
+      />
+    </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="adminEmail">Email de l'administrateur:</label>
+      <mat-form-field class="example-full-width">
+
+      <input matInput
+        type="email"
+        id="adminEmail"
+        [(ngModel)]="newAdmin.email"
+        name="email"
+        required
+      />
+      </mat-form-field>
+    </div>
+    <button mat-flat-button type="submit" class="btn btn-primary">Ajouter Administrateur</button>
+  </form>
+
+  <!-- Liste des administrateurs -->
+  <div *ngIf="adminList.length > 0; else noAdmins">
+    <table class="admin-table">
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let admin of adminList; let i = index">
+        <td *ngIf="!admin.editMode">{{ admin.name }}</td>
+        <td *ngIf="!admin.editMode">{{ admin.email }}</td>
+
+        <!-- Mode édition -->
+        <td *ngIf="admin.editMode">
+          <mat-form-field class="example-full-width">
+
+          <input matInput [(ngModel)]="admin.name" />
+          </mat-form-field>
+        </td>
+        <td *ngIf="admin.editMode">
+          <mat-form-field class="example-full-width">
+
+          <input matInput [(ngModel)]="admin.email" />
+          </mat-form-field>
+        </td>
+
+        <!-- Boutons d'action -->
+        <td>
+          <button mat-flat-button *ngIf="!admin.editMode" (click)="editAdmin(i)">Modifier</button>
+          <button mat-flat-button *ngIf="admin.editMode" (click)="saveAdmin(i)">Sauvegarder</button>
+          <button mat-flat-button (click)="deleteAdmin(i)">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noAdmins>
+    <p>Aucun administrateur ajouté pour le moment.</p>
+  </ng-template>
+</div>

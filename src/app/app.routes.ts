@@ -8,6 +8,7 @@ import {AuthGuard} from "./services/auth.guard";
 import {PokerComponent} from "./pages/poker/poker.component";
 import {SalonComponent} from "./components/salon/salon.component";
 import {ListSalonsComponent} from "./pages/list-salons/list-salons.component";
+import {AdminComponent} from "./components/admin/admin.component";
 
 export const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {path: 'poker', component: PokerComponent, canActivate: [AuthGuard]},
   {path: 'list-salons', component: ListSalonsComponent, canActivate: [AuthGuard]},
   {path: 'salon/:id', component: SalonComponent, canActivate: [AuthGuard]},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'varify-email', component: VarifyEmailComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},

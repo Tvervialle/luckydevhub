@@ -3,7 +3,6 @@ import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {GoogleAuthProvider} from '@angular/fire/auth'
 import {Router} from '@angular/router';
 import {EMPTY, Observable} from "rxjs";
-import { User } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +27,8 @@ export class AuthService {
   login(email: string, password: string) {
     this.fireauth.signInWithEmailAndPassword(email, password).then(res => {
       localStorage.setItem('token', 'true');
+      localStorage.setItem('email', email);
+
 
       if (res.user?.emailVerified == true) {
         this.isAuthenticated = true;

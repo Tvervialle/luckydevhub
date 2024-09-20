@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SalonService} from "../../services/salon.service";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatInput} from "@angular/material/input";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {NgIf} from "@angular/common";
+import {AdminService} from "../../services/admin.service";
 
 @Component({
   selector: 'app-poker',
@@ -20,16 +20,18 @@ import {NgIf} from "@angular/common";
   templateUrl: './poker.component.html',
   styleUrl: './poker.component.css'
 })
-export class PokerComponent {
+export class PokerComponent implements OnInit {
   salonName = '';
   errorMessage: string = ''; // Pour afficher les erreurs dans l'UI
+  isAdminAthorized = false;
 
-
-  constructor(private salonService: SalonService, private router: Router, private firestore: AngularFirestore) {
+  constructor(private salonService: SalonService, private router: Router, protected admin: AdminService) {
   }
 
-  // Crée un salon temporaire de 10 minutes
-  salonId = '';
+  async ngOnInit() {
+    this.isAdminAthorized = await this.admin.isAdmin()
+
+  }
 
   async createSalon(): Promise<void> {
     if (!this.salonName) {
@@ -54,5 +56,6 @@ export class PokerComponent {
       this.errorMessage = 'Erreur lors de la création du salon. Veuillez réessayer.';
     }
   }
+
 }
 

@@ -54,30 +54,10 @@ export class SalonComponent implements OnInit, OnDestroy {
         this.removeUserFromSalon(this.userId, this.salonId);
       }
     });
-    // Stocker une clé dans le sessionStorage au chargement de la page
-    sessionStorage.setItem('isRefreshed', 'true');
-
-    // Ajouter l'événement beforeunload
-    window.addEventListener('beforeunload', this.leaveSalonOnUnload.bind(this));
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  leaveSalonOnUnload(event: any): void {
-    // Si la clé existe dans le sessionStorage, c'est un refresh
-    if (sessionStorage.getItem('isRefreshed')) {
-      console.log('Page rechargée');
-      // Action spécifique en cas de refresh
-    } else {
-      console.log('Fermeture de l\'onglet ou de la fenêtre');
-      // Action spécifique en cas de fermeture de l'onglet ou de la fenêtre
-      this.salonService.leaveSalon(this.salonId ? this.salonId : '');
-    }
-  }
 
   ngOnDestroy(): void {
-    // Supprimer l'événement beforeunload pour éviter les fuites de mémoire
-    window.removeEventListener('beforeunload', this.leaveSalonOnUnload.bind(this));
-
     // Supprimer la clé du sessionStorage lors de la destruction du composant
     sessionStorage.removeItem('isRefreshed');
 

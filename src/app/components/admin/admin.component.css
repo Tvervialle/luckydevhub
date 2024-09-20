@@ -1,0 +1,38 @@
+.admin-list-container {
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button{
+  margin: 5px;
+}
+
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
