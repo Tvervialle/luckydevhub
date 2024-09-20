@@ -6,6 +6,7 @@ import {MatButton} from "@angular/material/button";
 import {MatFormField, MatInput} from "@angular/material/input";
 import {NgIf} from "@angular/common";
 import {AdminService} from "../../services/admin.service";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-poker',
@@ -25,11 +26,18 @@ export class PokerComponent implements OnInit {
   errorMessage: string = ''; // Pour afficher les erreurs dans l'UI
   isAdminAthorized = false;
 
-  constructor(private salonService: SalonService, private router: Router, protected admin: AdminService) {
+  constructor(private salonService: SalonService, private router: Router, protected admin: AdminService,private firestore: AngularFirestore) {
   }
 
   async ngOnInit() {
-    this.isAdminAthorized = await this.admin.isAdmin()
+    this.firestore.collection('admins').valueChanges().subscribe({
+      next: async () => {
+        this.isAdminAthorized = await this.admin.isAdmin()
+      },
+      error: (error) => {
+        console.error('Error fetching admins', error);
+      }
+    });
 
   }
 
